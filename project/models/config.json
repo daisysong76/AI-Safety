@@ -1,0 +1,30 @@
+{
+    "model": {
+        "model_name": "meta-llama/Llama-2-13b-chat-hf",
+        "output_dir": "content-safety-output",
+        "epochs": 3,
+        "batch_size": 4,
+        "learning_rate": 5e-5
+    },
+    "bias": {
+        "protected_attributes": ["gender", "race"],
+        "privileged_groups": [{"gender": 1}, {"race": 1}],
+        "unprivileged_groups": [{"gender": 0}, {"race": 0}],
+        "fairness_threshold": 0.1
+    },
+    "data": {
+        "num_samples": 10000,
+        "class_distribution": {
+            "0": 0.7,
+            "1": 0.06,
+            "2": 0.06,
+            "3": 0.06,
+            "4": 0.06,
+            "5": 0.06
+        },
+        "attribute_values": {
+            "gender": ["male", "female", "non-binary"],
+            "race": ["group1", "group2", "group3"]
+        }
+    }
+}

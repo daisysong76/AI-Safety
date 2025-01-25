@@ -1,0 +1,7 @@
+[flake8]
+max-line-length = 88  # Set maximum line length (default is 79)
+extend-ignore = E203, W503  # Ignore specific warnings
+
+
+# run it:
+# flake8 .
