@@ -1,8 +1,8 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
-from data.scripts.preprocess_data import preprocess_dataset
-from models.training_scripts.fine_tune import fine_tune_model
+from project.data.scripts.Alignment_Data_Construction_Pipeline import preprocess_dataset
+from project.models.training_scripts.SFT_Lora import fine_tune_model
 
 default_args = {
     "owner": "airflow",
