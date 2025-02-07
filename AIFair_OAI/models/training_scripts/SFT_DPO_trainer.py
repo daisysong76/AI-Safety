@@ -450,3 +450,32 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Key Features of UnifiedLLMTrainer:
+# Dual Training Modes:
+
+# Supervised Fine-Tuning (SFT): For standard supervised tasks with labeled data.
+# Direct Preference Optimization (DPO): For preference-based optimization using rewards or human feedback.
+# Bias Mitigation:
+
+# Incorporates advanced bias mitigation techniques to ensure fair and unbiased model outputs.
+# Parameter-Efficient Fine-Tuning (PEFT):
+
+# Integrates LoRA for efficient adaptation of large models.
+# Flexible Checkpointing:
+
+# Supports both DeepSpeed and HuggingFace checkpointing formats for versatility.
+# Comprehensive Logging and Monitoring:
+
+# Utilizes WandB and TensorBoard for detailed tracking of training metrics.
+# Distributed Training Support:
+
+# Leverages strategies like ring attention groups and DeepSpeed optimizations for scalable training.
+# Auxiliary Losses and Gradient Clipping:
+
+# Supports optional auxiliary and NLL losses with gradient norm clipping to stabilize training.
+# Integration with HuggingFace's Trainer:
+
+# Provides an abstraction layer over HuggingFace's Trainer while retaining the flexibility of custom training loops when needed.
+Potential Extensions:

@@ -1,0 +1,1 @@
+AutoToS (Automated Thought of Search): This algorithm enhances the planning abilities of LLMs while reducing costs. It uses LLMs to propose search algorithms that can be plugged into classic search mechanisms, achieving 100% accuracy with very few calls to the LLM3.

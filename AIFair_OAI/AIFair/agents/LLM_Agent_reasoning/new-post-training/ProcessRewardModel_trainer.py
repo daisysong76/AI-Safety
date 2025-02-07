@@ -205,6 +205,73 @@ class PRMTrainer:
         if self.tensorboard_writer:
             self.tensorboard_writer.close()
 
+def main():
+    # Configuration for SFTTrainer
+    config_sft = {
+        'base_model': 'gpt2-medium',
+        'dataset_type': 'csv',
+        'dataset_path': 'path/to/your/dataset.csv',
+        'max_length': 512,
+        'train_batch_size': 32,
+        'eval_batch_size': 32,
+        'learning_rate': 5e-5,
+        'scheduler_step_size': 1,
+        'scheduler_gamma': 0.1,
+        'zero_stage': 3,
+        'bf16': True,
+        'gradient_checkpointing': True,
+        'peft_r': 16,
+        'peft_alpha': 32,
+        'peft_dropout': 0.1,
+        'aux_loss_coef': 0.01,
+        'packing_samples': False,
+        'save_hf_ckpt': True,
+        'disable_ds_ckpt': False,
+        'use_wandb': True,
+        'wandb_api_key': 'your_wandb_api_key',
+        'wandb_org': 'your_org',
+        'wandb_project': 'sft_project',
+        'wandb_group': 'sft_group',
+        'wandb_run_name': 'sft_run_01',
+        'use_tensorboard': './logs/sft',
+        'epochs': 3,
+        'training_mode': 'sft'  # 'sft' or 'dpo'
+    }
+    
+    # Initialize and run SFTTrainer
+    trainer_sft = AdvancedBiasAwareLLMTrainer(config_sft)
+    trainer_sft.fine_tune()
+    
+    # Configuration for PRMTrainer
+    config_prm = {
+        'base_model': 'gpt2-medium',
+        'reward_model_path': 'path/to/your/reward_model',
+        'learning_rate': 5e-6,
+        'device': 'cuda' if torch.cuda.is_available() else 'cpu',
+        'max_length': 50,
+        'epochs': 3,
+        'batch_size': 8,
+        'max_norm': 1.0,
+        'use_wandb': True,
+        'wandb_project': 'prm_trainer',
+        'wandb_run_name': 'prm_run_01',
+        'output_dir': './prm_finetuned_model',
+        'use_tensorboard': False,  # Set to True and provide 'logging_dir' if needed
+        'distributed': False,  # Set to True if using distributed training
+        'train_dataset': load_dataset('csv', data_files='path/to/your/train_dataset.csv')['train'],
+        'eval_dataset': load_dataset('csv', data_files='path/to/your/eval_dataset.csv')['train'],
+        'num_workers': 4,
+        'use_scheduler': False
+    }
+    
+    # Initialize and run PRMTrainer
+    trainer_prm = PRMTrainer(config_prm)
+    trainer_prm.train()
+    
+    # Final Evaluation
+    # Optionally, evaluate the fine-tuned model further using both SFT and PRM metrics
+
+
 # 1.1 Overview
 # The PRMTrainer class is designed to fine-tune a pre-trained language model using a Post-Training Reward Model (PRM). This approach aligns with methodologies like Reinforcement Learning from Human Feedback (RLHF), where a reward model evaluates the quality of the primary model's outputs to guide further fine-tuning.
 
