@@ -133,32 +133,32 @@ This project plan ensures a systematic approach to addressing gender bias in LLM
  Create Dockerfile
 touch Dockerfile
 
-# Add Docker instructions
-# Dockerfile content
-# FROM python:3.8-slim
-# WORKDIR /app
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
-# COPY . .
-# CMD ["uvicorn", "deployment/api/app:app", "--host", "0.0.0.0", "--port", "8000"]
+### Add Docker instructions
+### Dockerfile content
+#### FROM python:3.8-slim
+#### WORKDIR /app
+#### COPY requirements.txt .
+####RUN pip install --no-cache-dir -r requirements.txt
+#### COPY . .
+#### CMD ["uvicorn", "deployment/api/app:app", "--host", "0.0.0.0", "--port", "8000"]
 
-# Create Kubernetes configuration
+### Create Kubernetes configuration
 mkdir k8s
 touch k8s/deployment.yaml
 touch k8s/service.yaml
 
-# Add Kubernetes deployment configuration
-# deployment.yaml content
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: my-app
-# spec:
-#   replicas: 3
-#   selector:
-#     matchLabels:
-#       app: my-app
-#   template:
-#     metadata:
-#       labels:
-#         app: my-app
+#### Add Kubernetes deployment configuration
+#### deployment.yaml content
+#### apiVersion: apps/v1
+#### kind: Deployment
+#### metadata:
+####   name: my-app
+#### spec:
+####   replicas: 3
+####   selector:
+####     matchLabels:
+####       app: my-app
+####   template:
+####     metadata:
+####       labels:
+####         app: my-app
